@@ -21,7 +21,7 @@
     "obfuscate"
   ],
   "author": "Christian Sarnataro",
-  "license": "MIT",
+  "license": "GNU GPL",
   "devDependencies": {
     "jest": "^26.0.1"
   },
