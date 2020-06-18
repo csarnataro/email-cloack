@@ -47,19 +47,6 @@ As an example, the result of cloacking the email address `carlo@some.where` is:
 
 (See the source code of: [http://perassi.org/quickhacks/snippets/aec/aec1.html](http://perassi.org/quickhacks/snippets/aec/aec1.html))
 
-## Alternative techniques
-
-> Please note that this technique is not 100% spammer proof. Valid - or even
-> better - alternative techniques can be, for example, obfuscation with CSS using
-
-```css
-unicode-bidi: bidi-override;
-direction: rtl;
-```
-
-See for example:
-[https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS](https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS)
-
 ## Installation
 
 ```bash
@@ -83,6 +70,26 @@ oemail("some@address.com", true, "Contact us");
 // return just the scrambled email address, with no enclosing <a> tag.
 oemail("some@address.com", false);
 ```
+
+## Alternative techniques
+
+> Please note that this technique is not 100% spammer proof. Valid - or even
+> better - alternative techniques can be, for example, obfuscation with CSS using
+
+### CSS obfuscation
+
+```css
+unicode-bidi: bidi-override;
+direction: rtl;
+```
+
+See for example:
+[https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS](https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS)
+
+### Character rotation
+
+`email-scramble` module, available at
+[https://www.npmjs.com/package/email-scramble](https://www.npmjs.com/package/email-scramble)
 
 ## Contributing
 
