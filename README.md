@@ -12,6 +12,29 @@ available at [https://perassi.org/quickhacks/aec/aec.txt](https://perassi.org/qu
 Motivations behind this technique are available on archive.org at
 [http://web.archive.org/web/20110221010757/http://perassi.org/2007/09/24/an-accessible-email-cloaking-technique/](http://web.archive.org/web/20110221010757/http://perassi.org/2007/09/24/an-accessible-email-cloaking-technique/)
 
+> I’ve found a good list of techniques to achieve this task but when you can’t
+> use anything like CSS, images or > JavaScript it’s harder so I’ve written a
+> small PHP script that uses two techniques:
+>
+> - writing everything (text and email) directly in hexadecimal;
+> - putting, between each character of the text, a (X)HTML comment with random content (‘@’ or ‘>’ as suggested).
+>
+> In other words, calling
+>
+> ```php
+> $email = 'carlo@some.where';
+> $testo = 'text to show';
+> echo oemail($email);
+> ```
+>
+> would show something like the source of this file.
+>
+> The result is not enough to save your life but it can be a decent method, though.
+>
+> You can download it [here](https://perassi.org/quickhacks/aec/aec.txt).
+
+## Example
+
 As an example, the result of cloacking the email address `carlo@some.where` is:
 
 ```html
@@ -23,17 +46,6 @@ As an example, the result of cloacking the email address `carlo@some.where` is:
 ```
 
 (See the source code of: [http://perassi.org/quickhacks/snippets/aec/aec1.html](http://perassi.org/quickhacks/snippets/aec/aec1.html))
-
-> Please note that this technique is not 100% spammer proof. Valid - or even
-> better - alternative techniques can be, for example, obfuscation with CSS using
-
-```css
-unicode-bidi: bidi-override;
-direction: rtl;
-```
-
-See for example:
-[https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS](https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS)
 
 ## Installation
 
@@ -58,6 +70,26 @@ oemail("some@address.com", true, "Contact us");
 // return just the scrambled email address, with no enclosing <a> tag.
 oemail("some@address.com", false);
 ```
+
+## Alternative techniques
+
+> Please note that this technique is not 100% spammer proof. Valid - or even
+> better - alternative techniques can be, for example, obfuscation with CSS using
+
+### CSS obfuscation
+
+```css
+unicode-bidi: bidi-override;
+direction: rtl;
+```
+
+See for example:
+[https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS](https://elizavetasemenova.github.io/blog/2016/12/02/obfuscate-email-with-CSS)
+
+### Character rotation
+
+`email-scramble` module, available at
+[https://www.npmjs.com/package/email-scramble](https://www.npmjs.com/package/email-scramble)
 
 ## Contributing
 
