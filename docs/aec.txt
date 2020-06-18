@@ -1,0 +1,102 @@
+
+<?php
+
+/*
+aec - accessible email cloacking
+Copyright (C) 2007 Carlo Perassi <carlo@perassi.org>
+License http://www.gnu.org/copyleft/gpl.html GNU/GPL
+
+Homepage: http://perassi.org/2007/09/24/an-accessible-email-cloaking-technique/
+
+References:
+http://www.csarven.ca/hiding-email-addresses
+http://rumkin.com/tools/mailto_encoder/custom.php
+http://www.randomchaos.com/documents/?source=php_and_unicode
+*/
+
+function utf8_to_unicode($str)
+{
+  $unicode = array();
+  $values = array();
+  $lookingFor = 1;
+  $strlen_str = strlen($str);
+
+  for ($i = 0; $i < $strlen_str; $i++) {
+    $thisValue = ord($str[$i]);
+
+    if ($thisValue < 128) {
+      $unicode[] = $thisValue;
+    } else {
+      if (count($values) == 0) {
+        $lookingFor = ($thisValue < 224) ? 2 : 3;
+      }
+
+      $values[] = $thisValue;
+
+      if (count($values) == $lookingFor) {
+        $number = ($lookingFor == 3) ?
+          (($values[0] % 16) * 4096) + (($values[1] % 64) * 64) + ($values[2] % 64) : (($values[0] % 32) * 64) + ($values[1] % 64);
+
+        $unicode[] = $number;
+        $values = array();
+        $lookingFor = 1;
+      }
+    }
+  }
+
+  return $unicode[0];
+}
+
+/*
+$mail   -> email
+$mailto -> it is href=mailto
+$text   -> text to show
+*/
+function oemail($plain_email, $mailto = 1, $text = '')
+{
+  $l = strlen($plain_email);
+
+  $xemail = array();
+  for ($i = 0; $i < $l; $i++) {
+    $xemail[$i] = utf8_to_unicode($plain_email[$i]);
+  }
+
+  $oemail = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;'; // "mailto:"
+  if ($mailto) {
+    for ($i = 0; $i < $l; $i++) {
+      $oemail .= '&#' . $xemail[$i] . ';';
+    }
+    $oemail .= '">';
+    if ($text) {
+      $l = strlen($text);
+
+      $xemail = array();
+      for ($i = 0; $i < $l; $i++) {
+        // I reuse xemail as a container for text in hex
+        $xemail[$i] = utf8_to_unicode($text[$i]);
+      }
+    }
+  } else {
+    $oemail = '';
+  }
+  for ($i = 0; $i < $l; $i++) {
+    $oemail .= '&#' . $xemail[$i] . ';';
+
+    $oemail .= '<!-- ';
+    rand(0, 1) ? $oemail .= '>' : $oemail .= '@';
+    $oemail .= ' -->';
+  }
+  if ($mailto) $oemail .= '</a>';
+
+  return $oemail;
+}
+
+$email = 'carlo@some.where';
+$text  = 'text to show';
+
+echo oemail($email) . "\n";
+echo "\n<br />\n";
+echo oemail($email, 1, $text) . "\n";
+echo "\n<br />\n";
+echo oemail($email, 0) . "\n";
+?>

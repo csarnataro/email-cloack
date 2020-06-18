@@ -1,0 +1,32 @@
+{
+  "name": "email-cloack",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csarnataro/email-cloack.git"
+  },
+  "homepage": "https://github.com/csarnataro/email-cloack",
+  "description": "Simple and accessible email cloacking module",
+  "bugs": {
+    "url": "https://github.com/csarnataro/email-cloack/issues"
+  },
+  "private": false,
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "email",
+    "cloack",
+    "obfuscate"
+  ],
+  "author": "Christian Sarnataro",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  },
+  "dependencies": {},
+  "files": [
+    "lib"
+  ]
+}

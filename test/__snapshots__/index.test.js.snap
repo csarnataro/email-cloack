@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`oemail (single param) create valid DOM 1`] = `
+<a
+  href="mailto:carlo@some.where"
+>
+  c
+  <!-- @ -->
+  a
+  <!-- @ -->
+  r
+  <!-- @ -->
+  l
+  <!-- @ -->
+  o
+  <!-- @ -->
+  @
+  <!-- @ -->
+  s
+  <!-- @ -->
+  o
+  <!-- @ -->
+  m
+  <!-- @ -->
+  e
+  <!-- @ -->
+  .
+  <!-- @ -->
+  w
+  <!-- @ -->
+  h
+  <!-- @ -->
+  e
+  <!-- @ -->
+  r
+  <!-- @ -->
+  e
+  <!-- @ -->
+</a>
+`;
+
+exports[`oemail (with 2 params) - no mailto should create an email address without surrounding anchor tag 1`] = `"carlo@some.where"`;
+
+exports[`oemail (with 2 params) should create an email address with surrounding anchor tag 1`] = `
+<a
+  href="mailto:carlo@some.where"
+>
+  c
+  <!-- @ -->
+  a
+  <!-- @ -->
+  r
+  <!-- @ -->
+  l
+  <!-- @ -->
+  o
+  <!-- @ -->
+  @
+  <!-- @ -->
+  s
+  <!-- @ -->
+  o
+  <!-- @ -->
+  m
+  <!-- @ -->
+  e
+  <!-- @ -->
+  .
+  <!-- @ -->
+  w
+  <!-- @ -->
+  h
+  <!-- @ -->
+  e
+  <!-- @ -->
+  r
+  <!-- @ -->
+  e
+  <!-- @ -->
+</a>
+`;
+
+exports[`oemail (with 3 params) should create an email address with text content 1`] = `
+<a
+  href="mailto:carlo@some.where"
+>
+  C
+  <!-- @ -->
+  o
+  <!-- @ -->
+  n
+  <!-- @ -->
+  t
+  <!-- @ -->
+  a
+  <!-- @ -->
+  c
+  <!-- @ -->
+  t
+  <!-- @ -->
+   
+  <!-- @ -->
+  u
+  <!-- @ -->
+  s
+  <!-- @ -->
+</a>
+`;
