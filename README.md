@@ -1,10 +1,7 @@
 # Simple and accessible email cloacking technique
 
 `email-cloack` is a simple JavaScript library to obfuscate an email address in
-NodeJS.
-Actually, it could be used also in the browser (it's ES5 compatible) but it
-will be pointless, since in that case the email address would be passed in as
-clear text to the `oemail` function.
+NodeJS and in the browser.
 
 It's a JavaScript porting of the PHP script by [Carlo Perassi](https://carlo.perassi.com/)
 available at [https://perassi.org/quickhacks/aec/aec.txt](https://perassi.org/quickhacks/aec/aec.txt)
